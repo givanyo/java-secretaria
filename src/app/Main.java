@@ -1,9 +1,18 @@
 package app;
 
+import javax.swing.SwingUtilities;
+
+import view.TelaAluno;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                TelaAluno tela = new TelaAluno();
+                tela.setVisible(true);
+            }
+        });
 
 	}
 
