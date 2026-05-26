@@ -14,7 +14,7 @@ public class AlunoDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String sql = "INSERT INTO aluno (nomeAluno, cpf, dataNascimento, genero, nomeResponsavel, afro, escolaPublica) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO aluno (nomeAluno, cpf, dataNascimento, genero, nomeResponsavel, afro, escolaridadePublica) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			conn = Conexao.conectar();
@@ -49,7 +49,7 @@ public class AlunoDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String sql = "UPDATE aluno SET nomeAluno = ?, cpf = ?, dataNascimento = ?, genero = ?, nomeResponsavel = ?, afro = ?, escolaPublica = ? WHERE id = ?";
+		String sql = "UPDATE aluno SET nomeAluno = ?, cpf = ?, dataNascimento = ?, genero = ?, nomeResponsavel = ?, afro = ?, escolaridadePublica = ? WHERE id = ?";
 		
 		try {
 			conn = Conexao.conectar();
@@ -112,7 +112,7 @@ public class AlunoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        String sql = "SELECT id, nomeAluno, cpf, dataNascimento, genero, nomeResponsavel, afro, escolaPublica FROM aluno ORDER BY id DESC";
+        String sql = "SELECT id, nomeAluno, cpf, dataNascimento, genero, nomeResponsavel, afro, escolaridadePublica FROM aluno ORDER BY id DESC";
         try {
         	conn = Conexao.conectar();
         	stmt = conn.prepareStatement(sql);
@@ -127,7 +127,7 @@ public class AlunoDAO {
         		aluno.setGenero(rs.getString("genero"));
         		aluno.setNomeResponsavel(rs.getString("nomeResponsavel"));
         		aluno.setAfro(rs.getBoolean("afro"));
-        		aluno.setEscolaridadePublica(rs.getBoolean("escolaPublica"));
+        		aluno.setEscolaridadePublica(rs.getBoolean("escolaridadePublica"));
         		lista.add(aluno);
         	}
         } catch(Exception e) {
