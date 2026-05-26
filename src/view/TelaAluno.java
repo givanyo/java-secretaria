@@ -2,17 +2,22 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import controller.AlunoController;
+
 public class TelaAluno extends JFrame {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 10L;
 	
 	private JLabel lblId;
 	private JLabel lblNomeAluno;
 	private JLabel lblCPF;
 	private JLabel lblDataNascimento;
+
 	private JLabel lblGenero;
 	private JLabel lblNomeResponsavel;
 	
@@ -28,14 +33,15 @@ public class TelaAluno extends JFrame {
 	
 	private JButton btnSalvar;
 	private JButton btnExcluir;
-	private JButton btnExcluirTodos;
 	private JButton btnLimparCampos;
 	
 	private JCheckBox checkAfro;
-	private JCheckBox checkEscolaridade;
+	private JCheckBox checkEscolaridadePublica;
 	
 	private JTable tabelaAlunos;
 	private DefaultTableModel modeloTabela;
+	
+	private AlunoController controller;
 	
 	public TelaAluno() {
 		setTitle("Secretaria - Cadastrar alunos");
@@ -45,6 +51,9 @@ public class TelaAluno extends JFrame {
 		setLayout(new BorderLayout());
 		
 		criarComponentes();
+		controller = new AlunoController(this);
+		configurarEventos();
+		controller.carregarTabela();
 	}
 	
 	private void criarComponentes() {
@@ -64,7 +73,7 @@ public class TelaAluno extends JFrame {
 		lblDataNascimento = new JLabel("Data de nascimento:");
 		txtDataNascimento = new JTextField();
 		
-		lblGenero = new JLabel("Gênero:");
+		lblGenero = new JLabel("Gênero (M/F):");
 		txtGenero = new JTextField();
 		
 		lblNomeResponsavel = new JLabel("Nome do responsável:");
@@ -74,7 +83,7 @@ public class TelaAluno extends JFrame {
 		checkAfro = new JCheckBox();
 		
 		lblEscolaridade = new JLabel("Escolaridade Pública:");
-		checkEscolaridade = new JCheckBox();
+		checkEscolaridadePublica = new JCheckBox();
 		
 		painelFormulario.add(lblId);
 		painelFormulario.add(txtId);
@@ -98,11 +107,11 @@ public class TelaAluno extends JFrame {
 		painelFormulario.add(checkAfro);
 		
 		painelFormulario.add(lblEscolaridade);
-		painelFormulario.add(checkEscolaridade);
+		painelFormulario.add(checkEscolaridadePublica);
 		
 		add(painelFormulario, BorderLayout.NORTH);
 		
-        modeloTabela = new DefaultTableModel(new Object[] { "ID", "NomeAluno", "CPF", "DataNascimento", "Genero", "NomeResponsavel", "Afro", "Escolaridade" }, 0) {
+        modeloTabela = new DefaultTableModel(new Object[] { "ID", "NomeAluno", "CPF", "DataNascimento", "Genero", "NomeResponsavel", "Afro", "E. P." }, 0) {
             private static final long serialVersionUID = 1L;
 
             public boolean isCellEditable(int row, int column) {
@@ -119,16 +128,76 @@ public class TelaAluno extends JFrame {
         
         btnSalvar = new JButton("Salvar");
         btnExcluir = new JButton("Excluir");
-        btnExcluirTodos = new JButton("Excluir Todos");
         btnLimparCampos = new JButton("Limpar Campos");
         
         painelBotoes.add(btnSalvar);
         painelBotoes.add(btnExcluir);
-        painelBotoes.add(btnExcluirTodos);
         painelBotoes.add(btnLimparCampos);
         
         add(painelBotoes, BorderLayout.SOUTH);
 		
+	}
+	
+    private void configurarEventos() {
+
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                controller.salvar();
+            }
+        });
+
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                controller.excluir();
+            }
+        });
+
+        btnLimparCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                controller.limpar();
+            }
+        });
+
+        tabelaAlunos.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                controller.preencherFormulario();
+            }
+        });
+    }
+	
+	public JTextField getTxtId() {
+		return txtId;
+	}
+
+	public JTextField getTxtNomeAluno() {
+		return txtNomeAluno;
+	}
+
+	public JTextField getTxtCPF() {
+		return txtCPF;
+	}
+
+	public JTextField getTxtDataNascimento() {
+		return txtDataNascimento;
+	}
+
+	public JTextField getTxtGenero() {
+		return txtGenero;
+	}
+
+	public JTextField getTxtNomeResponsavel() {
+		return txtNomeResponsavel;
+	}
+
+	public JCheckBox getCheckAfro() {
+		return checkAfro;
+	}
+
+	public JCheckBox getCheckEscolaridadePublica() {
+		return checkEscolaridadePublica;
+	}
+	public JTable getTabelaAlunos() {
+		return tabelaAlunos;
 	}
 	
 }
