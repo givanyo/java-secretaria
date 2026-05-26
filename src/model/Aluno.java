@@ -8,14 +8,14 @@ public class Aluno {
     private String dataNascimento;
     private String genero;
     private String nomeResponsavel;
-    private String afro;
-    private String escolaridadePublica;
+    private Boolean afro;
+    private Boolean escolaridadePublica;
 
     public Aluno() {
     }
 
     public Aluno(String nomeAluno, String cpf, String dataNascimento, String genero,
-                 String nomeResponsavel, boolean afro, boolean escolaridadePublica) {
+                 String nomeResponsavel, Boolean afro, Boolean escolaridadePublica) {
         this.nomeAluno = nomeAluno;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -26,7 +26,7 @@ public class Aluno {
     }
 
     public Aluno(int id, String nomeAluno, String cpf, String dataNascimento, String genero,
-                 String nomeResponsavel, String afro, String escolaridadePublica) {
+                 String nomeResponsavel, Boolean afro, Boolean escolaridadePublica) {
         this.id = id;
         this.nomeAluno = nomeAluno;
         this.cpf = cpf;
@@ -85,19 +85,19 @@ public class Aluno {
         this.nomeResponsavel = nomeResponsavel;
     }
 
-    public String isAfro() {
-        return afro;
+    public Boolean getAfro() {
+        return this.afro;
     }
 
-    public void setAfro(String afro) {
+    public void setAfro(Boolean afro) {
         this.afro = afro;
     }
 
-    public String isEscolaridadePublica() {
-        return escolaridadePublica;
+    public Boolean getEscolaridadePublica() {
+        return this.escolaridadePublica;
     }
 
-    public void setEscolaridadePublica(String escolaridadePublica) {
+    public void setEscolaridadePublica(Boolean escolaridadePublica) {
         this.escolaridadePublica = escolaridadePublica;
     }
 }
