@@ -1,11 +1,13 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Aluno {
 
     private int id;
     private String nomeAluno;
     private String cpf;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     private String genero;
     private String nomeResponsavel;
     private Boolean afro;
@@ -14,7 +16,7 @@ public class Aluno {
     public Aluno() {
     }
 
-    public Aluno(String nomeAluno, String cpf, String dataNascimento, String genero,
+    public Aluno(String nomeAluno, String cpf, LocalDate dataNascimento, String genero,
                  String nomeResponsavel, Boolean afro, Boolean escolaridadePublica) {
         this.nomeAluno = nomeAluno;
         this.cpf = cpf;
@@ -25,7 +27,7 @@ public class Aluno {
         this.escolaridadePublica = escolaridadePublica;
     }
 
-    public Aluno(int id, String nomeAluno, String cpf, String dataNascimento, String genero,
+    public Aluno(int id, String nomeAluno, String cpf, LocalDate dataNascimento, String genero,
                  String nomeResponsavel, Boolean afro, Boolean escolaridadePublica) {
         this.id = id;
         this.nomeAluno = nomeAluno;
@@ -61,11 +63,11 @@ public class Aluno {
         this.cpf = cpf;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
